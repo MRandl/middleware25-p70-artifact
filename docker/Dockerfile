@@ -22,4 +22,4 @@ USER ${LDAP_USERNAME}
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y
 ENV PATH="/home/${LDAP_USERNAME}/.cargo/bin:${PATH}"
 
-ENTRYPOINT ["/bin/bash", "-c", "wait infinity"]
+ENTRYPOINT ["/bin/bash", "-c", "sleep infinity"]
