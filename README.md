@@ -1,3 +1,17 @@
+# Middleware 25 artifact evaluation
+
+```
+cd docker
+docker build -t p70-artifact . \
+    --build-arg LDAP_GROUPNAME=SACS-StaffU \
+    --build-arg LDAP_GID=11259 \
+    --build-arg LDAP_USERNAME=randl \
+    --build-arg LDAP_UID=204140
+
+docker run p70-artifact
+```
+
+
 # MedRAG Toolkit
 
 `MedRAG` a systematic toolkit for Retrieval-Augmented Generation (RAG) on medical question answering (QA). `MedRAG` is used to implement various RAG systems for the benchmark study on our [`MIRAGE`](https://github.com/Teddy-XiongGZ/MIRAGE) (Medical Information Retrieval-Augmented Generation Evaluation).
@@ -112,7 +126,7 @@ cot = MedRAG(llm_name="OpenAI/gpt-3.5-turbo-16k", rag=False)
 answer, _, _ = cot.answer(question=question, options=options)
 print(f"Final answer in json with rationale: {answer}")
 # {
-#   "step_by_step_thinking": "Compression of the facial nerve at the stylomastoid foramen will affect the function of the facial nerve. The facial nerve is responsible for innervating the muscles of facial expression, including those involved in smiling, frowning, and closing the eyes. It also carries taste sensation from the anterior two-thirds of the tongue. Additionally, the facial nerve controls tear production (lacrimation) and salivation. Therefore, compression of the facial nerve at the stylomastoid foramen will cause paralysis of the facial muscles (A), loss of taste (B), lacrimation (C), and decreased salivation (D).", 
+#   "step_by_step_thinking": "Compression of the facial nerve at the stylomastoid foramen will affect the function of the facial nerve. The facial nerve is responsible for innervating the muscles of facial expression, including those involved in smiling, frowning, and closing the eyes. It also carries taste sensation from the anterior two-thirds of the tongue. Additionally, the facial nerve controls tear production (lacrimation) and salivation. Therefore, compression of the facial nerve at the stylomastoid foramen will cause paralysis of the facial muscles (A), loss of taste (B), lacrimation (C), and decreased salivation (D).",
 #   "answer_choice": "D"
 # }
 ```
@@ -123,7 +137,7 @@ medrag = MedRAG(llm_name="OpenAI/gpt-3.5-turbo-16k", rag=True, retriever_name="M
 answer, snippets, scores = medrag.answer(question=question, options=options, k=32) # scores are given by the retrieval system
 print(f"Final answer in json with rationale: {answer}")
 # {
-#   "step_by_step_thinking": "A lesion causing compression of the facial nerve at the stylomastoid foramen will result in paralysis of the facial muscles. Loss of taste, lacrimation, and decreased salivation are not specifically mentioned in relation to a lesion at the stylomastoid foramen.", 
+#   "step_by_step_thinking": "A lesion causing compression of the facial nerve at the stylomastoid foramen will result in paralysis of the facial muscles. Loss of taste, lacrimation, and decreased salivation are not specifically mentioned in relation to a lesion at the stylomastoid foramen.",
 #   "answer_choice": "A"
 # }
 
@@ -142,7 +156,7 @@ medrag = MedRAG(llm_name="OpenAI/gpt-3.5-turbo-16k", rag=True, retriever_name="M
 answer, snippets, scores = medrag.answer(question=question, options=options, k=32) # scores are given by the retrieval system
 print(f"Final answer in json with rationale: {answer}")
 # {
-#   "step_by_step_thinking": "A lesion causing compression of the facial nerve at the stylomastoid foramen will result in paralysis of the facial muscles. Loss of taste, lacrimation, and decreased salivation are not specifically mentioned in relation to a lesion at the stylomastoid foramen.", 
+#   "step_by_step_thinking": "A lesion causing compression of the facial nerve at the stylomastoid foramen will result in paralysis of the facial muscles. Loss of taste, lacrimation, and decreased salivation are not specifically mentioned in relation to a lesion at the stylomastoid foramen.",
 #   "answer_choice": "A"
 # }
 ```
@@ -154,22 +168,22 @@ answer, history = medrag.answer(question=question, options=options, k=32, n_roun
 print(f"Final answer in json: {answer}") # {'answer': 'A'}
 print(f"Raw answer with analysis: {history[-3]}")
 # {
-#   'role': 'assistant', 
+#   'role': 'assistant',
 #   'content': '## Analysis:\nBased on the previous information provided, a lesion causing compression of the facial nerve at the stylomastoid foramen can result in an ipsilateral loss of motor function of the whole side of the face. This can lead to an unusual appearance and complications with chewing food. Lacrimation and taste may not be affected if the lesion remains distal to the greater petrosal and chorda tympani branches that originate deep in the temporal bone. However, decreased salivation can occur if the lesion affects the parasympathetic fibers that innervate the salivary glands.\n\n## Answer:\nThe correct answer is A. paralysis of the facial muscles.'
 # }
 print(f"Follow-up queries generated: {[item.split('Answer: ')[0].strip() for item in history[-4]['content'].split('Query: ')[1:]]}")
 # [
-#   'What are the functions of the facial nerve?', 
-#   'What is the anatomical location and function of the stylomastoid foramen?', 
-#   'What are the possible effects of a lesion causing compression of the facial nerve at the stylomastoid foramen?', 
-#   'What are the specific branches of the facial nerve that control taste sensation and lacrimation?', 
-#   'How does a lesion at the stylomastoid foramen affect salivation?', 
-#   'Are there any other possible effects of a lesion causing compression of the facial nerve at the stylomastoid foramen?', 
-#   'What are the effects of a lesion causing compression of the facial nerve at the stylomastoid foramen on salivation?', 
-#   'Can a lesion at the stylomastoid foramen affect lacrimation and taste if it remains distal to the greater petrosal and chorda tympani branches?', 
-#   'Are there any other possible effects of a lesion causing compression of the facial nerve at the stylomastoid foramen?', 
-#   'What is the specific effect of a lesion causing compression of the facial nerve at the stylomastoid foramen on lacrimation?', 
-#   'How does a lesion at the stylomastoid foramen affect taste sensation?', 
+#   'What are the functions of the facial nerve?',
+#   'What is the anatomical location and function of the stylomastoid foramen?',
+#   'What are the possible effects of a lesion causing compression of the facial nerve at the stylomastoid foramen?',
+#   'What are the specific branches of the facial nerve that control taste sensation and lacrimation?',
+#   'How does a lesion at the stylomastoid foramen affect salivation?',
+#   'Are there any other possible effects of a lesion causing compression of the facial nerve at the stylomastoid foramen?',
+#   'What are the effects of a lesion causing compression of the facial nerve at the stylomastoid foramen on salivation?',
+#   'Can a lesion at the stylomastoid foramen affect lacrimation and taste if it remains distal to the greater petrosal and chorda tympani branches?',
+#   'Are there any other possible effects of a lesion causing compression of the facial nerve at the stylomastoid foramen?',
+#   'What is the specific effect of a lesion causing compression of the facial nerve at the stylomastoid foramen on lacrimation?',
+#   'How does a lesion at the stylomastoid foramen affect taste sensation?',
 #   'Can a lesion at the stylomastoid foramen result in decreased salivation?'
 # ]
 ```

@@ -13,6 +13,4 @@ python3 main.py \
   --capacity 200 \
   --cache_type "LRU" \
   --seed "$1" \
-  --reranking \
-  --db_serve_path "/mnt/nfs/home/randl/medrag/data/veconly/dbtrace.json" \
-  --doc_serve_path "/mnt/nfs/home/randl/medrag/data/veconly/documents2.json"
+  --reranking

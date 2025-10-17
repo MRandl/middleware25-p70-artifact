@@ -12,7 +12,4 @@ python3 main.py \
   --bcap 20 \
   --seed "$1" \
   --cache_type "LSHLRU" \
-  --reranking \
-  --db_serve_path "/mnt/nfs/home/randl/medrag/data/veconly/dbtrace.json" \
-  --doc_serve_path "/mnt/nfs/home/randl/medrag/data/veconly/documents2_test.json"
-
+  --reranking
