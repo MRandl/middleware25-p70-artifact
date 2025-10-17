@@ -14,7 +14,25 @@ docker build -t p70-artifact . \
     --build-arg LDAP_USERNAME=randl \
     --build-arg LDAP_UID=204140
 
-docker run p70-artifact
+docker run -d p70-artifact:latest
 ```
 
 This will create a docker container with all dependencies already included.
+
+You can run code in it with:
+```
+docker exec -it <<<PRESS TAB>>> bash
+```
+If the tab press does not automplete for some reason, you can run docker ps and replace the <<<TAB>>> part with the ID of the container you just started.
+
+Once you bashed into it, there are only a few steps left before experimentation. Run:
+
+```
+huggingface-cli login
+``` and add the HF token of an account that has access to the LLama model we mentioned earlier. When prompted if you want
+to add this token to git credentials, say no.
+
+
+
+
+Do not forget to ```docker kill``` your container at the end!
