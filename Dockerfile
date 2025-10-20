@@ -18,7 +18,7 @@ RUN adduser ${LDAP_USERNAME} sudo
 
 # Set the working directory in your user's home
 WORKDIR /home/${LDAP_USERNAME}
-COPY ../* medrag
+COPY . medrag/
 RUN git clone git@github.com:sacs-epfl/proximity
 
 USER ${LDAP_USERNAME}

@@ -29,10 +29,11 @@ Once you bashed into it, there are only a few steps left before experimentation.
 
 ```
 huggingface-cli login
-``` and add the HF token of an account that has access to the LLama model we mentioned earlier. When prompted if you want
+```
+and add the HF token of an account that has access to the LLama model we mentioned earlier. When prompted if you want
 to add this token to git credentials, say no.
 
 
 
 
-Do not forget to ```docker kill``` your container at the end!
+Do not forget to ```docker kill``` your container at the end.
