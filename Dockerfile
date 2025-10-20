@@ -19,7 +19,7 @@ RUN adduser ${LDAP_USERNAME} sudo
 # Set the working directory in your user's home
 WORKDIR /home/${LDAP_USERNAME}
 COPY . medrag/
-RUN git clone git@github.com:sacs-epfl/proximity
+RUN git clone https://github.com/sacs-epfl/proximity
 
 USER ${LDAP_USERNAME}
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y

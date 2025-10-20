@@ -7,7 +7,6 @@ Make sure to agree to the Meta T&C and wait for confirmation (takes a few hours/
 Please clone this repo and run the following:
 
 ```
-cd docker
 docker build -t p70-artifact . \
     --build-arg LDAP_GROUPNAME=SACS-StaffU \
     --build-arg LDAP_GID=11259 \
